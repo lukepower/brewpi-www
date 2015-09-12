@@ -16,6 +16,7 @@
 		<script type="text/javascript" src="js/spin.js"></script>
 		<script type="text/javascript" src="js/fabricjs.js"></script>
 		<script type="text/javascript" src="js/test_classes.js"></script>
+		<script type="text/javascript" src="js/device-config.js"></script>
 	</head>
 	<body>
 		
@@ -25,20 +26,14 @@
 		<div class="panel">
 		<button type="button" class="btn rect" ng-click="addRect()">Rectangle</button>
 		</div>
+		<div class="device-list"></div>
+		<div id="device-console"></div>
 		<script>
 		
 		var canvas = this.__canvas = new fabric.Canvas('mainCanvas');
 		  fabric.Object.prototype.transparentCorners = false;
 
-		  canvas.on('mouse:over', function(e) {
-			e.target.setFill('red');
-			canvas.renderAll();
-		  });
-
-		  canvas.on('mouse:out', function(e) {
-			e.target.setFill('green');
-			canvas.renderAll();
-		  });
+		 
 
 		  var circle = new fabric.Circle({
 			  radius: 20, fill: 'green', left: 100, top: 100
@@ -49,8 +44,9 @@
 
 			canvas.add(circle, triangle);
 			
-			var tempSensor1 = new canvasTempsensor(200,100,10,10,canvas);
 		
+		
+		getDeviceList();
 		</script>
 		
 		<!-- Load scripts after the body, so they don't block rendering of the page -->

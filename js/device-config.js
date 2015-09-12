@@ -17,7 +17,7 @@ function getDeviceList(){
     "use strict";
     $.ajax({
         type: 'POST',
-        url: 'socketmessage.php',
+        url: 'http://192.168.1.37/socketmessage.php',
         data: {messageType: "getDeviceList", message: ""},
         success: function(response){
             response = response.replace(/\s/g, ''); //strip all whitespace, including newline.
@@ -167,6 +167,18 @@ function addDeviceToDeviceList(device, pinList, addManual){
     $applyButton.click(function(){
         applyDeviceSettings(device.nr);
     });
+	// add button depending on type
+	var $canvasButton = $("<button class='canvas'>toCanvas</button>");
+    $canvasButton.appendTo($nameAndApply);
+    $canvasButton.button({icons: {primary: "ui-icon-check" } });
+    console.log(device.h);
+	
+	$canvasButton.click(function(){  console.log("click"); var tempSensor2 = new canvasTempsensor(200,100,30,device,canvas); });
+	switch (device.h)
+	{
+		case 1: $canvasButton.click(function(){  console.log("click"); var tempSensor2 = new canvasTempsensor(200,100,30,device.nr,canvas); console.log ("Adding sensor to canvas");   }); break;// Temp;
+		case 2: ; break;// different
+	}
 
 
 
