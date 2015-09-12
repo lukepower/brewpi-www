@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<title>BrewPi reporting for duty!</title>
+		<link type="text/css" href="css/redmond/jquery-ui-1.10.3.custom.css" rel="stylesheet" />
+		<link type="text/css" href="css/style.css" rel="stylesheet"/>
+		<link rel="apple-touch-icon" href="touch-icon-iphone.png">
+        <link rel="apple-touch-icon" sizes="76x76" href="touch-icon-ipad.png">
+        <link rel="apple-touch-icon" sizes="120x120" href="touch-icon-iphone-retina.png">
+        <link rel="apple-touch-icon" sizes="152x152" href="touch-icon-ipad-retina.png">
+        <meta name="apple-mobile-web-app-title" content="BrewPi">
+		<script type="text/javascript" src="js/jquery-1.11.0.min.js"></script>
+		<script type="text/javascript" src="js/jquery-ui-1.10.3.custom.min.js"></script>
+		<script type="text/javascript" src="js/jquery-ui-timepicker-addon.js"></script>
+		<script type="text/javascript" src="js/spin.js"></script>
+		<script type="text/javascript" src="js/fabricjs.js"></script>
+		<script type="text/javascript" src="js/test_classes.js"></script>
+	</head>
+	<body>
+		
+		
+		<h1>Canvas test page</h1>
+		<canvas id="mainCanvas" width="600" height="500" style="float:left;"></canvas>
+		<div class="panel">
+		<button type="button" class="btn rect" ng-click="addRect()">Rectangle</button>
+		</div>
+		<script>
+		
+		var canvas = this.__canvas = new fabric.Canvas('mainCanvas');
+		  fabric.Object.prototype.transparentCorners = false;
+
+		  canvas.on('mouse:over', function(e) {
+			e.target.setFill('red');
+			canvas.renderAll();
+		  });
+
+		  canvas.on('mouse:out', function(e) {
+			e.target.setFill('green');
+			canvas.renderAll();
+		  });
+
+		  var circle = new fabric.Circle({
+			  radius: 20, fill: 'green', left: 100, top: 100
+			});
+			var triangle = new fabric.Triangle({
+			  width: 20, height: 30, fill: 'blue', left: 50, top: 50
+			});
+
+			canvas.add(circle, triangle);
+			
+			var tempSensor1 = new canvasTempsensor(200,100,10,10,canvas);
+		
+		</script>
+		
+		<!-- Load scripts after the body, so they don't block rendering of the page -->
+		<!-- <script type="text/javascript" src="js/jquery-1.11.0.js"></script> -->
+		
+	</body>
+</html>
